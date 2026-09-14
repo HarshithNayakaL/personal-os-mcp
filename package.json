@@ -1,0 +1,40 @@
+{
+  "name": "personal-mcp-os",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/mcp-server",
+    "apps/windows-agent",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit && prettier --check .",
+    "test": "tsx --test tests/*.test.ts",
+    "start": "node dist/apps/mcp-server/src/main.js",
+    "agent": "node dist/apps/windows-agent/src/main.js",
+    "setup": "node scripts/setup.mjs",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "playwright": "^1.55.0",
+    "sql.js": "^1.13.0",
+    "ws": "^8.18.0",
+    "yaml": "^2.8.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/sql.js": "^1.4.9",
+    "@types/ws": "^8.18.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

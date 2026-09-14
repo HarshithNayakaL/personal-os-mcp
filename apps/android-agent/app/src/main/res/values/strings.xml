@@ -1,0 +1,4 @@
+<resources>
+    <string name="title">Personal MCP companion</string>
+    <string name="instructions">Keep this app open for execution. USB pairing: adb reverse tcp:4319 tcp:4319. Your phone retains control of permissions.</string>
+</resources>

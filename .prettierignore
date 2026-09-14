@@ -1,0 +1,6 @@
+node_modules
+dist
+.local
+apps/android-agent
+package-lock.json
+workspace

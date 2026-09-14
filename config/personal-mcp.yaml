@@ -1,0 +1,28 @@
+deviceName: windows-main
+host: 127.0.0.1
+port: 4319
+roots: [./workspace]
+timeoutMs: 30000
+maxBytes: 1048576
+browserProfile: ./.local/browser
+downloadDirectory: ./workspace/downloads
+headless: false
+enabledCapabilities: ['*']
+allowedEnvironment: [LANG, TZ]
+allowedLocalHosts: []
+approvals:
+  READ: allow
+  WRITE: allow
+  EXECUTE: required
+  SENSITIVE: required
+  browser.type: allow
+  browser.clear: allow
+  browser.select: allow
+  browser.hover: allow
+  browser.navigate: allow
+  browser.launch: allow
+  browser.close: allow
+  browser.evaluate: deny
+commandDenyPatterns: []
+logging: true
+androidPairing: true
