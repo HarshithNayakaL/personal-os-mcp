@@ -2,6 +2,8 @@
 
 A runnable local-first execution layer for MCP-compatible AI clients, with a separate Windows agent and a native Android companion. It exposes reusable device, filesystem, shell, PowerShell, Git, browser, HTTP, clipboard, application and audit primitives. There are no provider-specific job-application workflows or cloud dependencies.
 
+**Case study:** [harshith-nayaka-l-portfolio.vercel.app/work/personal-os-mcp](https://harshith-nayaka-l-portfolio.vercel.app/work/personal-os-mcp): the problem, the architecture and the engineering decisions behind Personal MCP OS.
+
 **85 MCP tools**, **62 Windows capabilities**, **18 Android capabilities** (two clipboard tools are shared), and four MCP resources. Device routing respects each MCP session's preference and rejects ambiguous selections. Sensitive actions use configurable, one-use local approvals.
 
 ## Start on Windows
