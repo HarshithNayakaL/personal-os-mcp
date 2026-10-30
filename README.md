@@ -4,6 +4,8 @@ A runnable local-first execution layer for MCP-compatible AI clients, with a sep
 
 **Case study:** [harshith-nayaka-l-portfolio.vercel.app/work/personal-os-mcp](https://harshith-nayaka-l-portfolio.vercel.app/work/personal-os-mcp): the problem, the architecture and the engineering decisions behind Personal MCP OS.
 
+**Listed on Glama:** [glama.ai/mcp/servers/HarshithNayakaL/personal-os-mcp](https://glama.ai/mcp/servers/HarshithNayakaL/personal-os-mcp), the MCP server directory.
+
 **85 MCP tools**, **62 Windows capabilities**, **18 Android capabilities** (two clipboard tools are shared), and four MCP resources. Device routing respects each MCP session's preference and rejects ambiguous selections. Sensitive actions use configurable, one-use local approvals.
 
 ## Start on Windows
