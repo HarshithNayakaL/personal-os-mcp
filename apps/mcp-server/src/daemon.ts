@@ -17,8 +17,11 @@ const paired: Record<string, string> = fs.existsSync('.local/paired')
   ? JSON.parse(vault('.local/paired'))
   : {};
 let pairCode: { value: string; expires: number } | undefined;
-const equal = (a: string, b: string) =>
-  a.length === b.length && timingSafeEqual(Buffer.from(a), Buffer.from(b));
+const equal = (a: string, b: string) => {
+  const x = Buffer.from(a);
+  const y = Buffer.from(b);
+  return x.length === y.length && timingSafeEqual(x, y);
+};
 const auth = (req: http.IncomingMessage, token: string) =>
   equal(String(req.headers.authorization ?? ''), `Bearer ${token}`);
 const send = (res: http.ServerResponse, status: number, data: unknown) => {
@@ -127,10 +130,15 @@ const server = http.createServer(async (req, res) => {
 });
 const wss = new WebSocketServer({ noServer: true, maxPayload: c.maxBytes + 16384 });
 server.on('upgrade', (req, socket, head) => {
-  const bearer = String(req.headers.authorization ?? '').replace(/^Bearer /, '');
-  const deviceId = equal(bearer, credentials.agent)
-    ? c.deviceName
-    : Object.keys(paired).find((id) => equal(bearer, paired[id]));
+  let deviceId: string | undefined;
+  try {
+    const bearer = String(req.headers.authorization ?? '').replace(/^Bearer /, '');
+    deviceId = equal(bearer, credentials.agent)
+      ? c.deviceName
+      : Object.keys(paired).find((id) => equal(bearer, paired[id]));
+  } catch {
+    deviceId = undefined;
+  }
   if (req.url !== '/agent' || !deviceId || req.headers.origin) {
     socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
     socket.destroy();
