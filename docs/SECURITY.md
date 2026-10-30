@@ -15,7 +15,7 @@ node scripts/admin.mjs pending
 node scripts/admin.mjs approve <request-id>
 ```
 
-Pending requests show the sanitized arguments for human review. Approval is bound to the exact original arguments, session, device and capability, expires after five minutes, and can be consumed once. The model cannot approve through an MCP tool. The local admin credential is separate from the client credential. A user-approved unrestricted shell can access local administration under that user's account; the approval boundary cannot defend against commands you authorize to subvert it.
+Pending requests show the exact, unredacted arguments that the approval will bind, so nothing in a request can be hidden from review behind a secret-looking key. Treat `pending` output as sensitive: it can contain credentials the model put in the arguments. Approval is bound to the exact original arguments, session, device and capability, expires after five minutes, and can be consumed once. The model cannot approve through an MCP tool. The local admin credential is separate from the client credential. A user-approved unrestricted shell can access local administration under that user's account; the approval boundary cannot defend against commands you authorize to subvert it.
 
 ## Secrets and storage
 

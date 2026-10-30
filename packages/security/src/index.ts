@@ -138,7 +138,9 @@ export class Approvals {
         session,
         device,
         capability,
-        args: redact(args),
+        // The approver must see exactly what the fingerprint binds. Redacting here would let
+        // a secret-looking key (e.g. `token=1&<payload>`) hide part of a command from review.
+        args: structuredClone(args),
         expires: Date.now() + 300000,
         approved: false,
       });

@@ -69,6 +69,15 @@ test('approvals bind identity, device, exact arguments and expire after single u
     /denied/,
   );
 });
+test('pending approvals show the exact arguments the approval binds', () => {
+  const p = new Approvals({ EXECUTE: 'required' });
+  const args = { command: 'echo token=1&powershell -enc AAAA' };
+  assert.throws(() => p.check('s', 'd', 'shell.command', 'EXECUTE', args), /approval/i);
+  const [[id, pending]] = [...p.pending];
+  assert.deepEqual(pending.args, args);
+  p.approve(id);
+  assert.equal(p.check('s', 'd', 'shell.command', 'EXECUTE', args, id), id);
+});
 test('redaction removes recognizable credentials and audit omits command payloads', () => {
   assert.deepEqual(
     redact({
